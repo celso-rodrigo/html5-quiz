@@ -9,15 +9,17 @@ const breakpoints = {
 };
 
 const Wrapper = styled.div`
-  background-color: ${colors.grey6};
   display: flex;
-  flex-direction: column;
   align-items: center;
-  font-family: 'Sora', sans-serif;
-  padding: 20px;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0;
   height: 100vh;
   overflow-y: scroll;
   background-color: ${colors.grey6};
+
+  color: ${colors.grey1};
+  font-family: 'Sora', sans-serif;
 
   /* SM */
   @media (min-width: ${breakpoints.sm}) {
@@ -33,6 +35,13 @@ const Wrapper = styled.div`
   @media (min-width: ${breakpoints.lg}) {
     /* background-color: green; */
   }
+`;
+
+export const HeaderWrapper = styled.header`
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4rem;
+  width: 100%;
 `;
 
 export const QuestionsWrapper = styled.div`
