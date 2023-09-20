@@ -1,11 +1,14 @@
 import QuestionCard from "./Components/QuestionCard"
-import Wrapper from "./Styles/WrapperStyles"
+import Wrapper, { QuestionsWrapper } from "./Styles/WrapperStyles"
 
 function App() {
-
   return (
     <Wrapper>
-      <QuestionCard selected answered={false} correctAnswer option="Hyper Transfer Markup Language" />
+      <QuestionsWrapper>
+        <QuestionCard selected answered={false} correctAnswer option="Hyper Transfer Markup Language" />
+        <QuestionCard selected answered={false} correctAnswer option="Hyper Transfer Markup Language" />
+        <QuestionCard selected answered={false} correctAnswer option="Hyper Transfer Markup Language" />
+      </QuestionsWrapper>
     </Wrapper>
   )
 }

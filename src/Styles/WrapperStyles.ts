@@ -16,17 +16,36 @@ const Wrapper = styled.div`
   font-family: 'Sora', sans-serif;
   padding: 20px;
   height: 100vh;
+  overflow-y: scroll;
+  background-color: ${colors.grey6};
 
   /* SM */
   @media (min-width: ${breakpoints.sm}) {
+    /* background-color: yellow; */
   }
 
   /* MD */
   @media (min-width: ${breakpoints.md}) {
+    /* background-color: orange; */
   }
 
   /* LG */
   @media (min-width: ${breakpoints.lg}) {
+    /* background-color: green; */
+  }
+`;
+
+export const QuestionsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+
+  /* MD */
+  @media (min-width: ${breakpoints.md}) {
+    flex-direction: row;
   }
 `;
 

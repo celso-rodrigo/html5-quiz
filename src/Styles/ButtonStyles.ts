@@ -6,8 +6,8 @@ const QuestionButton = styled.button`
   font-size: 1rem;
   background-color: ${colors.grey5};
   padding: 10px;
-  height: 125px;
-  width: 200px;
+  height: 150px;
+  width: 275px;
   transition: 1s;
 
   border: 3px solid;
