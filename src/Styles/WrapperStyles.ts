@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from './Colors';
 
 // Breakpoints
 const breakpoints = {
@@ -8,23 +9,24 @@ const breakpoints = {
 };
 
 const Wrapper = styled.div`
-  background-color: #f0f0f0;
+  background-color: ${colors.grey6};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Sora', sans-serif;
   padding: 20px;
   height: 100vh;
 
   /* SM */
   @media (min-width: ${breakpoints.sm}) {
-    background-color: #ffcccc;
   }
 
   /* MD */
   @media (min-width: ${breakpoints.md}) {
-    background-color: #ccffcc;
   }
 
   /* LG */
   @media (min-width: ${breakpoints.lg}) {
-    background-color: #ccccff;
   }
 `;
 
