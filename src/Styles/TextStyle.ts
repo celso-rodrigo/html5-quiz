@@ -6,6 +6,10 @@ export const Title = styled.h1`
   text-align: center;
 `;
 
+export const Question = styled(Title)`
+  padding: 0 5rem;
+`;
+
 export const Bold = styled.span`
   font-weight: 600;
 `;

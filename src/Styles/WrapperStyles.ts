@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 5rem;
+  gap: 2rem;
   padding: 2rem 0;
   height: 100vh;
   overflow-y: scroll;
@@ -25,6 +25,7 @@ const Wrapper = styled.div`
   /* SM */
   @media (min-width: ${breakpoints.sm}) {
     /* background-color: yellow; */
+    gap: 5rem;
   }
 
   /* MD */
@@ -41,9 +42,14 @@ const Wrapper = styled.div`
 export const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
+  padding: 0 2rem;
   justify-content: space-between;
-  padding: 0 4rem;
   width: 100%;
+
+  /* SM */
+  @media (min-width: ${breakpoints.sm}) {
+    padding: 0 4rem;
+  }
 `;
 
 export const QuestionsWrapper = styled.div`
