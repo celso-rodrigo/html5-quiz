@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colors from './Colors';
 
-const QuestionButton = styled.button`
+export const QuestionButton = styled.button`
   font-family: 'Sora', sans-serif;
   font-size: 1rem;
   background-color: ${colors.grey5};
@@ -24,4 +24,22 @@ QuestionButton.defaultProps = {
   }
 }
 
-export { QuestionButton };
+export const NextButton = styled.button`
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid ${colors.orange};
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  transition: .1s;
+
+  &:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: 0 0 5px ${colors.orange};
+  }
+`;

@@ -12,11 +12,12 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 2rem;
+  gap: 5rem;
   padding: 2rem 0;
   height: 100vh;
   overflow-y: scroll;
   background-color: ${colors.grey6};
+  background: linear-gradient(180deg, ${colors.grey6} 10%, ${colors.grey4} 35%, ${colors.grey1} 100%);
 
   color: ${colors.grey1};
   font-family: 'Sora', sans-serif;
