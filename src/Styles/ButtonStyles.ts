@@ -8,7 +8,7 @@ export const QuestionButton = styled.button`
   padding: 10px;
   height: 150px;
   width: 275px;
-  transition: 1s;
+  transition: .5s;
 
   border: 3px solid;
   border-color: ${(props) => props.theme.borderColor};

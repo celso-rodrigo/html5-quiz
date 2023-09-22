@@ -9,17 +9,18 @@ import IQuestion from "./Interfaces/IQuestion"
 import {useEffect} from 'react'
 
 function App() {
-  const [questionNumber] = useState(1);
-  const [questions, setQuestions] = useState<IQuestion[]>([]);
+  const [questionNumber] = useState<number>(1)
+  const [questions, setQuestions] = useState<IQuestion[]>([])
+  const [selectedAnswer, setSelectedAnswer] = useState<string>("")
 
   // Return 5 unique questions
   function getQuestions():IQuestion[] {
-    const uniqueQuestions: IQuestion[] = [];
+    const uniqueQuestions: IQuestion[] = []
     const wantedQuestions = 5;
 
     while (uniqueQuestions.length < wantedQuestions) {
-      const randomNumber = Math.floor(Math.random() * questionList.length);
-      const chosenQuestion = questionList[randomNumber];
+      const randomNumber = Math.floor(Math.random() * questionList.length)
+      const chosenQuestion = questionList[randomNumber]
       
       // Check if the questions are unique
       if (!uniqueQuestions.includes(chosenQuestion)) {
@@ -30,11 +31,20 @@ function App() {
     return uniqueQuestions;
   }
 
+  function handleSelectAnswer(answer: string): void {
+    setSelectedAnswer(answer)
+  }
+
   // Define initial questions
   useEffect(() => {
     const questions = getQuestions()
     setQuestions(questions)
   }, [])
+
+  const optionOne = questions.length ? questions[questionNumber - 1].options[0] : ""
+  const optionTwo = questions.length ? questions[questionNumber - 1].options[1] : ""
+  const optionThree = questions.length ? questions[questionNumber - 1].options[2] : ""
+  const correctAnswer = questions.length ? questions[questionNumber - 1].correctOption : ""
 
   return (
     <Wrapper>
@@ -49,29 +59,32 @@ function App() {
 
           <QuestionsWrapper>
             <QuestionCard
-              selected={false}
+              selected={optionOne === selectedAnswer}
               answered={false}
-              correctAnswer={questions[questionNumber - 1].options[0] === questions[questionNumber - 1].correctOption}
-              option={questions[questionNumber - 1].options[0]}
+              correctAnswer={optionOne === correctAnswer}
+              option={optionOne}
+              handleSelectAnswer={handleSelectAnswer}
             />
             <QuestionCard
-              selected={false}
+              selected={optionTwo === selectedAnswer}
               answered={false}
-              correctAnswer={questions[questionNumber - 1].options[1] === questions[questionNumber - 1].correctOption}
-              option={questions[questionNumber - 1].options[1]}
+              correctAnswer={optionTwo === correctAnswer}
+              option={optionTwo}
+              handleSelectAnswer={handleSelectAnswer}
             />
             <QuestionCard
-              selected={false}
+              selected={optionThree === selectedAnswer}
               answered={false}
-              correctAnswer={questions[questionNumber - 1].options[2] === questions[questionNumber - 1].correctOption}
-              option={questions[questionNumber - 1].options[2]}
+              correctAnswer={optionThree === correctAnswer}
+              option={optionThree}
+              handleSelectAnswer={handleSelectAnswer}
             />
           </QuestionsWrapper>
         </>
       )}
 
 
-      <AnswerButton disabled />
+      <AnswerButton disabled={selectedAnswer.length === 0} />
     </Wrapper>
   )
 }

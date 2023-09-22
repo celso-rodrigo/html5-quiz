@@ -6,9 +6,10 @@ interface IProps {
   answered: boolean,
   correctAnswer: boolean,
   option: string,
+  handleSelectAnswer: (answer: string) => void,
 }
 
-function QuestionCard({selected, answered, correctAnswer, option}: IProps) {
+function QuestionCard({selected, answered, correctAnswer, option, handleSelectAnswer}: IProps) {
   // Handles border color logic
   function getBorderColor() {
     const borderColor = {borderColor: `${colors.grey3}`}
@@ -19,7 +20,10 @@ function QuestionCard({selected, answered, correctAnswer, option}: IProps) {
   }
 
   return (
-    <QuestionButton theme={getBorderColor()}>
+    <QuestionButton
+      theme={getBorderColor()}
+      onClick={() => handleSelectAnswer(option)}
+    >
       {option}
     </QuestionButton>
   )
