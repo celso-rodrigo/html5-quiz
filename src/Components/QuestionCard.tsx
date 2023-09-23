@@ -1,15 +1,16 @@
+import { ButtonHTMLAttributes, MouseEvent } from 'react';
 import { QuestionButton } from "../Styles/ButtonStyles"
 import colors from "../Styles/Colors"
 
-interface IProps {
+interface IProps extends ButtonHTMLAttributes<HTMLButtonElement>{
   selected: boolean,
   answered: boolean,
   correctAnswer: boolean,
   option: string,
-  handleSelectAnswer: (answer: string) => void,
+  onClick: (event: MouseEvent<HTMLButtonElement>) => void,
 }
 
-function QuestionCard({selected, answered, correctAnswer, option, handleSelectAnswer}: IProps) {
+function QuestionCard({selected, answered, correctAnswer, option, onClick: handleSelectAnswer}: IProps) {
   // Handles border color logic
   function getBorderColor() {
     const borderColor = {borderColor: `${colors.grey3}`}
@@ -22,7 +23,8 @@ function QuestionCard({selected, answered, correctAnswer, option, handleSelectAn
   return (
     <QuestionButton
       theme={getBorderColor()}
-      onClick={() => handleSelectAnswer(option)}
+      onClick={handleSelectAnswer}
+      value={option}
     >
       {option}
     </QuestionButton>
