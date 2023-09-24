@@ -28,11 +28,11 @@ export const NextButton = styled.button`
   display: flex;
   align-items: center;
   background-color: transparent;
-  border: 2px solid ${colors.orange};
+  border: 2px solid ${(props) => props.theme.borderColor};
   border-radius: 50%;
   height: 50px;
   width: 50px;
-  transition: .1s;
+  transition: .3s;
 
   &:disabled {
     opacity: 0.3;
@@ -40,6 +40,12 @@ export const NextButton = styled.button`
   }
 
   &:hover {
-    box-shadow: 0 0 5px ${colors.orange};
+    box-shadow: 0 0 5px ${(props) => props.theme.borderColor};
   }
 `;
+
+NextButton.defaultProps = {
+  theme: {
+    borderColor: `${colors.grey3}`,
+  }
+}

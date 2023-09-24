@@ -12,10 +12,17 @@ import EndGameScreen from "./Components/EndGameScreen"
 
 function App() {
   const [currentGamePhase, setCurrentGamePhase] = useState<gamePhase>(gamePhase.loading)
+  const [questionAnswered,setQuestionAnswered] = useState<boolean>(false)
   const [questionNumber, setQuestionNumber] = useState<number>(1)
   const [questions, setQuestions] = useState<IQuestion[]>([])
   const [selectedAnswer, setSelectedAnswer] = useState<string>("")
+  
   const WANTED_QUESTIONS = 5;
+  const SHOW_QUESTIONS = currentGamePhase === gamePhase.answering || currentGamePhase === gamePhase.showingAnswers
+  const OPTION_ONE = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].options[0] : ""
+  const OPTION_TWO = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].options[1] : ""
+  const OPTION_THREE = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].options[2] : ""
+  const CORRECT_ANSWER = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].correctOption : ""
 
   // Return 5 unique questions
   function getQuestions():IQuestion[] {
@@ -34,13 +41,27 @@ function App() {
     return uniqueQuestions;
   }
 
+  // Used to reset game flow after answering
+  function setGameStateAnswering() {
+    setSelectedAnswer("")
+    setQuestionAnswered(false)
+    setCurrentGamePhase(gamePhase.answering)
+  }
+
+  // Used to prepare the game to display question results
+  function setGameStateShowingAnswers() {
+    setQuestionAnswered(true)
+    setCurrentGamePhase(gamePhase.showingAnswers) 
+  }
+
+  // Save user answer on the state
   function handleSelectAnswer(event: MouseEvent<HTMLButtonElement>): void {
     const answer = event.currentTarget.value
     setSelectedAnswer(answer)
   }
 
   function goToNextQuestion() {
-    setSelectedAnswer("")
+    setGameStateAnswering()
     if (questionNumber < 5) {
       setQuestionNumber((prev) => prev + 1)
     } else {
@@ -49,17 +70,19 @@ function App() {
     }
   }
 
+  function showAnswers() {
+    setGameStateShowingAnswers()
+    if (selectedAnswer === CORRECT_ANSWER) {
+      console.log("WIP SCORE");
+    }
+  }
+
   // Define initial questions and start the game
   useEffect(() => {
     const questions = getQuestions()
     setQuestions(questions)
-    setCurrentGamePhase(gamePhase.inGame)
+    setCurrentGamePhase(gamePhase.answering)
   }, [])
-
-  const optionOne = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].options[0] : ""
-  const optionTwo = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].options[1] : ""
-  const optionThree = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].options[2] : ""
-  const correctAnswer = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].correctOption : ""
 
   return (
     <Wrapper>
@@ -71,37 +94,38 @@ function App() {
       </HeaderWrapper>
 
       {/* Show up after questions are loaded */}
-      {currentGamePhase === gamePhase.inGame && (
+      {SHOW_QUESTIONS && (
         <>
           <Question>{questions[questionNumber - 1].question}</Question>
 
           <QuestionsWrapper>
             <QuestionCard
-              selected={optionOne === selectedAnswer}
-              answered={false}
-              correctAnswer={optionOne === correctAnswer}
-              option={optionOne}
+              selected={OPTION_ONE === selectedAnswer}
+              answered={questionAnswered}
+              correctAnswer={OPTION_ONE === CORRECT_ANSWER}
+              option={OPTION_ONE}
               onClick={handleSelectAnswer}
             />
             <QuestionCard
-              selected={optionTwo === selectedAnswer}
-              answered={false}
-              correctAnswer={optionTwo === correctAnswer}
-              option={optionTwo}
+              selected={OPTION_TWO === selectedAnswer}
+              answered={questionAnswered}
+              correctAnswer={OPTION_TWO === CORRECT_ANSWER}
+              option={OPTION_TWO}
               onClick={handleSelectAnswer}
             />
             <QuestionCard
-              selected={optionThree === selectedAnswer}
-              answered={false}
-              correctAnswer={optionThree === correctAnswer}
-              option={optionThree}
+              selected={OPTION_THREE === selectedAnswer}
+              answered={questionAnswered}
+              correctAnswer={OPTION_THREE === CORRECT_ANSWER}
+              option={OPTION_THREE}
               onClick={handleSelectAnswer}
             />
           </QuestionsWrapper>
 
           <AnswerButton 
             disabled={selectedAnswer.length === 0}
-            onClick={goToNextQuestion}
+            currentGamePhase={currentGamePhase}
+            onClick={questionAnswered ? goToNextQuestion : showAnswers}
           />
         </>
       )}

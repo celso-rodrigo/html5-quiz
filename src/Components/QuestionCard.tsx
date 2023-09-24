@@ -17,6 +17,7 @@ function QuestionCard({selected, answered, correctAnswer, option, onClick: handl
     if (!answered && selected) borderColor.borderColor = colors.grey1
     if (answered && selected && correctAnswer) borderColor.borderColor = colors.green
     if (answered && !selected && correctAnswer) borderColor.borderColor = colors.orange
+    if (answered && !correctAnswer) borderColor.borderColor = colors.red
     return borderColor
   }
 

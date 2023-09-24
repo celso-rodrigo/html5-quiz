@@ -1,7 +1,8 @@
 enum gamePhase {
   loading = 0,
-  inGame = 1,
-  endGame = 2,
+  answering = 1,
+  showingAnswers = 2,
+  endGame = 3,
 }
 
 export default gamePhase;
