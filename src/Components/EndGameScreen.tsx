@@ -1,7 +1,30 @@
+import IUserScore from "../Interfaces/IUserScore"
+import { Title } from "../Styles/TextStyle"
+import ScoreCard from "./ScoreCard"
 
-function EndGameScreen() {
+interface IProps {
+  userScore: IUserScore[]
+}
+
+function EndGameScreen({userScore}: IProps) {
+  const BAD_FEEDBACK = "Não desista, continue tentando!"
+  const MEDIUM_FEEDBACK = "Você foi bem, mas continue tentando para acertar todas!"
+  const GOOD_FEEDBACK = "Muito bom, você acertou todas as questões!"
+
+  function getFeedBack():string {
+    const rightAnswersAmount = userScore.filter((scoreEntry) => scoreEntry.rightAnswered).length;
+    if (rightAnswersAmount <= 2) return BAD_FEEDBACK
+    if (rightAnswersAmount <= 4) return MEDIUM_FEEDBACK
+    return GOOD_FEEDBACK
+  }
+
   return (
-    <div>EndGameScreen</div>
+    <div>
+      {userScore.map((scoreEntry: IUserScore, index: number) => (
+        <ScoreCard scoreEntry={scoreEntry} key={index} />
+      ))}
+      <Title>{getFeedBack()}</Title>
+    </div>
   )
 }
 

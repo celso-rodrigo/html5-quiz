@@ -9,6 +9,7 @@ import IQuestion from "./Interfaces/IQuestion"
 import gamePhase from "./Enums/gamePhase"
 import {useEffect, MouseEvent} from 'react'
 import EndGameScreen from "./Components/EndGameScreen"
+import IUserScore from "./Interfaces/IUserScore"
 
 function App() {
   const [currentGamePhase, setCurrentGamePhase] = useState<gamePhase>(gamePhase.loading)
@@ -16,9 +17,12 @@ function App() {
   const [questionNumber, setQuestionNumber] = useState<number>(1)
   const [questions, setQuestions] = useState<IQuestion[]>([])
   const [selectedAnswer, setSelectedAnswer] = useState<string>("")
+  const [userScore, setUserScore] = useState<IUserScore[]>([])
   
   const WANTED_QUESTIONS = 5;
   const SHOW_QUESTIONS = currentGamePhase === gamePhase.answering || currentGamePhase === gamePhase.showingAnswers
+  // Only assign values after question are loaded
+  const CURR_QUESTION = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].question : ""
   const OPTION_ONE = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].options[0] : ""
   const OPTION_TWO = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].options[1] : ""
   const OPTION_THREE = questions.length == WANTED_QUESTIONS? questions[questionNumber - 1].options[2] : ""
@@ -70,11 +74,16 @@ function App() {
     }
   }
 
+
   function showAnswers() {
+    setUserScore((prev) => (
+      [
+        ...prev,
+        {
+          question: CURR_QUESTION,
+          rightAnswered: CORRECT_ANSWER === selectedAnswer
+        }]))
     setGameStateShowingAnswers()
-    if (selectedAnswer === CORRECT_ANSWER) {
-      console.log("WIP SCORE");
-    }
   }
 
   // Define initial questions and start the game
@@ -96,7 +105,7 @@ function App() {
       {/* Show up after questions are loaded */}
       {SHOW_QUESTIONS && (
         <>
-          <Question>{questions[questionNumber - 1].question}</Question>
+          <Question>{CURR_QUESTION}</Question>
 
           <QuestionsWrapper>
             <QuestionCard
@@ -132,7 +141,7 @@ function App() {
 
       {/* Show up when game is finished */}
       {currentGamePhase === gamePhase.endGame && (
-        <EndGameScreen />
+        <EndGameScreen userScore={userScore} />
       )}
 
     </Wrapper>
