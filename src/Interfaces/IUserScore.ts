@@ -1,5 +1,6 @@
 interface IUserScore {
   question: string
+  userAnwser: string
   rightAnswered: boolean
 }
 

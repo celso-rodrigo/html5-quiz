@@ -1,5 +1,7 @@
 import IUserScore from "../Interfaces/IUserScore"
+import Table from "../Styles/TableStyles"
 import { Title } from "../Styles/TextStyle"
+import { EndGameWrapper } from "../Styles/WrapperStyles"
 import ScoreCard from "./ScoreCard"
 
 interface IProps {
@@ -19,12 +21,14 @@ function EndGameScreen({userScore}: IProps) {
   }
 
   return (
-    <div>
-      {userScore.map((scoreEntry: IUserScore, index: number) => (
-        <ScoreCard scoreEntry={scoreEntry} key={index} />
-      ))}
+    <EndGameWrapper>
+      <Table>
+        {userScore.map((scoreEntry: IUserScore, index: number) => (
+          <ScoreCard scoreEntry={scoreEntry} key={index} />
+        ))}
+      </Table>
       <Title>{getFeedBack()}</Title>
-    </div>
+    </EndGameWrapper>
   )
 }
 

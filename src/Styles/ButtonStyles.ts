@@ -26,12 +26,12 @@ QuestionButton.defaultProps = {
 
 export const NextButton = styled.button`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   background-color: transparent;
   border: 2px solid ${(props) => props.theme.borderColor};
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 75px;
+  width: 75px;
   transition: .3s;
 
   &:disabled {

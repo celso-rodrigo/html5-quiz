@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 2rem;
-  padding: 2rem 0;
+  padding: 0 0 3rem 0;
   height: 100vh;
   overflow-y: scroll;
   background-color: ${colors.grey6};
@@ -42,13 +42,14 @@ const Wrapper = styled.div`
 export const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
-  padding: 0 2rem;
+  padding: 1rem 1.5rem;
   justify-content: space-between;
   width: 100%;
+  background-color: ${colors.grey7};
 
   /* SM */
   @media (min-width: ${breakpoints.sm}) {
-    padding: 0 4rem;
+    padding: 1rem 4rem;
   }
 `;
 
@@ -64,6 +65,12 @@ export const QuestionsWrapper = styled.div`
   @media (min-width: ${breakpoints.md}) {
     flex-direction: row;
   }
+`;
+
+export const EndGameWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 `;
 
 export default Wrapper;

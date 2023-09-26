@@ -81,7 +81,8 @@ function App() {
         ...prev,
         {
           question: CURR_QUESTION,
-          rightAnswered: CORRECT_ANSWER === selectedAnswer
+          userAnwser: selectedAnswer,
+          rightAnswered: CORRECT_ANSWER === selectedAnswer,
         }]))
     setGameStateShowingAnswers()
   }
