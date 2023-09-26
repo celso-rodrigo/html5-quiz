@@ -1,8 +1,8 @@
 import { ButtonHTMLAttributes } from 'react';
 import { NextButton } from '../Styles/ButtonStyles';
-import next from "../assets/next.svg";
 import colors from '../Styles/Colors';
 import gamePhase from '../Enums/gamePhase';
+import NextIcon from '../Icons/NextIcon';
 
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   currentGamePhase: gamePhase
@@ -23,7 +23,7 @@ function AnswerButton({currentGamePhase, disabled, onClick}: IProps) {
       onClick={onClick}
       theme={getBorderColor()}
     >
-      <img src={next} alt='Next button' />
+      <NextIcon width="75" height="75" />
     </NextButton>
   )
 }
