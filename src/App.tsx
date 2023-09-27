@@ -74,7 +74,6 @@ function App() {
     }
   }
 
-
   function showAnswers() {
     setUserScore((prev) => (
       [
@@ -87,11 +86,16 @@ function App() {
     setGameStateShowingAnswers()
   }
 
-  // Define initial questions and start the game
-  useEffect(() => {
+  // Clear previous answers, define questions and start the game
+  function restarGame() {
+    setUserScore([])
     const questions = getQuestions()
     setQuestions(questions)
     setCurrentGamePhase(gamePhase.answering)
+  }
+
+  useEffect(() => {
+    restarGame()
   }, [])
 
   return (
@@ -142,9 +146,8 @@ function App() {
 
       {/* Show up when game is finished */}
       {currentGamePhase === gamePhase.endGame && (
-        <EndGameScreen userScore={userScore} />
+        <EndGameScreen userScore={userScore} onClick={restarGame} />
       )}
-
     </Wrapper>
   )
 }

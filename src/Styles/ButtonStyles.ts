@@ -49,3 +49,14 @@ NextButton.defaultProps = {
     borderColor: `${colors.grey3}`,
   }
 }
+
+export const RestartButton = styled.button`
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid ${colors.orange};
+  border-radius: 50%;
+  padding: .75rem;
+  height: 75px;
+  width: 75px;
+`;

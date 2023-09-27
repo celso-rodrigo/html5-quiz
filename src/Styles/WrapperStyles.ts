@@ -70,6 +70,7 @@ export const QuestionsWrapper = styled.div`
 export const EndGameWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 3rem;
 `;
 
