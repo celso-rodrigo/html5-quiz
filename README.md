@@ -1,9 +1,10 @@
 <h1 align="center">HTML5 Quiz</h1>
 
 <br/>
+
 <div align="center">
-  <img height="400" src="https://github.com/celso-rodrigo/html5-quiz/blob/main/public/mobile-preview.png" />
-  <img align="right" height="400" src="https://github.com/celso-rodrigo/html5-quiz/blob/main/public/noteboo-preview.png" />
+<img height="300" src="https://github.com/celso-rodrigo/html5-quiz/blob/main/public/mobile-preview.png" />
+<img height="300" src="https://github.com/celso-rodrigo/html5-quiz/blob/main/public/noteboo-preview.png" />
 </div>
 
 <br/>
