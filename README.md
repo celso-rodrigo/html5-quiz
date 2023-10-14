@@ -28,7 +28,7 @@
     <pre>npm install</pre>
   </li>
   <li>
-    <p>Inicie o projetot</p>
+    <p>Inicie o projeto</p>
     <pre>npm run dev</pre>
   </li>
 </ol>
